@@ -18,13 +18,18 @@ class VideoEmbed
         @url = url
         @width = options.fetch(:width, 560)
         @height = options.fetch(:height, 315)
+        @html = options.fetch(:html, {})
       end
 
       def embed
-        %Q{<iframe width="#{width}" height="#{height}" src="http://www.youtube.com/embed/#{video_id}?rel=0" frameborder="0" allowfullscreen></iframe>}
+        %Q{<iframe width="#{width}" height="#{height}" src="https://www.youtube.com/embed/#{video_id}?rel=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen#{html_attributes}></iframe>}
       end
 
       private
+
+      def html_attributes
+        @html.map { |key, value| " #{key}=\"#{value}\"" }.join
+      end
       
       def video_id
         if short_url?

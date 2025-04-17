@@ -10,19 +10,24 @@ class VideoEmbed
     end
 
     class Url
-      attr_reader :url, :width, :height
+      attr_reader :url, :width, :height, :html
 
       def initialize(url, options = {})
         @url = url
         @width = options.fetch(:width, 560)
         @height = options.fetch(:height, 315)
+        @html = options.fetch(:html, {})
       end
 
       def embed
-        %Q{<iframe src="http://player.vimeo.com/video/#{video_id}?title=0&amp;byline=0&amp;portrait=0" width="#{width}" height="#{height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>}
+        %Q{<iframe src="https://player.vimeo.com/video/#{video_id}?title=0&amp;byline=0&amp;portrait=0" width="#{width}" height="#{height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen#{html_attributes}></iframe>}
       end
 
       private
+
+      def html_attributes
+        @html.map { |key, value| " #{key}=\"#{value}\"" }.join
+      end
       
       def video_id
         if url.to_s =~ /album\/\d*\/video\//
