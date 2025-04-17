@@ -16,9 +16,9 @@ jobs:
     # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
     docker:
     - image: cimg/ruby:3.1.4
-        environment:
-          BUNDLER_VERSION: 2.1.4
-          OPENSSL_CONF: /etc/ssl/
+      environment:
+        BUNDLER_VERSION: 2.1.4
+        OPENSSL_CONF: /etc/ssl/
     steps:
     # Machine Setup
     #   If you break your build into multiple jobs with workflows, you will probably want to do the parts of this that are relevant in each
