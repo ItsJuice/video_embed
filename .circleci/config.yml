@@ -39,7 +39,7 @@ jobs:
         - v4-dep-
     # This is based on your 1.0 configuration file or project settings
     - run: gem install bundler --version 1.16.1
-    - run: bundle install --without development
+    - run: bundle install
     # Save dependency cache
     - save_cache:
         key: v4-dep-{{ .Branch }}-{{ epoch }}
