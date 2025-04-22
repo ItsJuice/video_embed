@@ -34,6 +34,11 @@ describe VideoEmbed do
       video_embed.should eql(%Q{<iframe src="https://player.vimeo.com/video/11040425?title=0&amp;byline=0&amp;portrait=0" width="560" height="315" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>})
     end
 
+    it 'handles embedding a video with a h key' do
+      video_embed = VideoEmbed.embed('http://vimeo.com/11040425?h=dead1234beef')
+      video_embed.should eql(%Q{<iframe src="https://player.vimeo.com/video/11040425?h=dead1234beef&title=0&amp;byline=0&amp;portrait=0" width="560" height="315" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>})
+    end
+
     it 'returns embed html from a mobile url' do
       video_embed = VideoEmbed.embed('http://vimeo.com/m/11040425')
       video_embed.should include('https://player.vimeo.com/video/11040425?title=0&amp;byline=0&amp;portrait=0')
