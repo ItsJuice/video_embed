@@ -20,7 +20,8 @@ class VideoEmbed
       end
 
       def embed
-        %Q{<iframe src="https://player.vimeo.com/video/#{video_id}?title=0&amp;byline=0&amp;portrait=0" width="#{width}" height="#{height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen#{html_attributes}></iframe>}
+        id = video_id
+        %Q{<iframe src="https://player.vimeo.com/video/#{id}#{ id.match?('\?') ? '&' : '?' }title=0&amp;byline=0&amp;portrait=0" width="#{width}" height="#{height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen#{html_attributes}></iframe>}
       end
 
       private
@@ -33,7 +34,7 @@ class VideoEmbed
         if url.to_s =~ /album\/\d*\/video\//
           url.to_s.match(/vimeo.com(?:\/m)?\/album\/\d*\/video\/(\d*)\??/)[1]
         else
-          url.to_s.match(/vimeo.com(?:\/m)?\/(\d*)\??/)[1]
+          url.to_s.match(/vimeo.com(?:\/m)?\/(\d*(\?h=[^&]*)?)\??/)[1]
         end
       end
     end
