@@ -2,7 +2,7 @@
 $LOAD_PATH.unshift('.')
 
 current_branch = `git rev-parse --abbrev-ref HEAD`.strip
-required_branch = 'master'
+required_branch = 'main'
 if current_branch != required_branch
   puts "WARNING: Not on #{ required_branch } branch (on #{current_branch}), cannot release."
   abort
