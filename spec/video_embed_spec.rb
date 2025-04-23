@@ -4,12 +4,12 @@ describe VideoEmbed do
   describe 'YouTube' do
     it 'returns embed html from a url' do
       video_embed = VideoEmbed.embed('http://www.youtube.com/watch?v=4Z3r9X8OahA&feature=fvwp&NR=1')
-      video_embed.should eql(%Q{<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/4Z3r9X8OahA?rel=0&modestbranding=1&controls=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>})
+      video_embed.should eql(%Q{<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/4Z3r9X8OahA?rel=0&modestbranding=1" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>})
     end
 
     it 'returns embed html from a short url' do
       video_embed = VideoEmbed.embed('http://youtu.be/4Z3r9X8OahA')
-      video_embed.should include('https://www.youtube-nocookie.com/embed/4Z3r9X8OahA?rel=0&modestbranding=1&controls=0')
+      video_embed.should include('https://www.youtube-nocookie.com/embed/4Z3r9X8OahA?rel=0&modestbranding=1')
     end
 
     it 'accepts a custom width' do
@@ -85,7 +85,6 @@ describe VideoEmbed do
       video_embed = VideoEmbed.embed('http://hostname.org/video/my-video', height: 720, html: { class: 'video-player'})
       video_embed.should match(/class="video-player"/) 
     end
-
   end
 end
 
