@@ -22,7 +22,7 @@ class VideoEmbed
       end
 
       def embed
-        %Q{<iframe width="#{width}" height="#{height}" src="https://www.youtube.com/embed/#{video_id}?rel=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen#{html_attributes}></iframe>}
+        %Q{<iframe width="#{width}" height="#{height}" src="https://www.youtube-nocookie.com/embed/#{video_id}?rel=0&modestbranding=1&controls=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen#{html_attributes}></iframe>}
       end
 
       private
